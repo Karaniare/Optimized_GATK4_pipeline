@@ -14,7 +14,7 @@ bam_dir="/full/path/to/bam/file/directory"
 
 vcf_dir="/full/path/to/vcfs/directory"
 
-unpaired_dir="/users/path/to/keep/unpaired/fastq/directory"
+unpaired_dir="/full/path/to/keep/unpaired/fastq/directory"
 
 gvcf_dir="/full/path/to/gvcf/directory"
 
