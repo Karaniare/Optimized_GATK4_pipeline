@@ -3,7 +3,7 @@ Part1.sh performes fastq and bam processing and quality check.
 Part2.sh performes variant calling, filtering and annotation
 The current version of these scripts should be submitted as slurm jobs.
 # Specifying necessary directories
-This step is required for both packages prior to submitting your job
+This step is required for both packages prior to submitting jobs. Open the package you want to run and edit directories accrodingly
 
 ref_dir="/full/path/to/reference/genome/directory"
 
@@ -18,3 +18,8 @@ unpaired_dir="/users/path/to/keep/unpaired/fastq/directory"
 gvcf_dir="/full/path/to/gvcf/directory"
 
 stat_dir="/full/path/to/qc/directory"
+
+##### Creating ID list 
+This step is required for both packages prior to submitting jobs.
+
+Create a sample ID file and call it ID_list.tsv in your bam file directory
