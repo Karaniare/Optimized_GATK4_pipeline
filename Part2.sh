@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J Gatk4_testT_1
+#SBATCH -J Variant_calling
 #SBATCH -t 24:00:00
 #SBATCH -c 8
 #SBATCH --mem=60g
