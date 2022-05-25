@@ -36,6 +36,7 @@ for i in $(cat ID_list.tsv)
   done 
 ###### Computing the distribution of the read depth using GATK
 cd $bam_dir
+ls *.sorted.dup.pf.bam > bam.list
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
     do
        gatk --java-options "-Xmx80g -Xms80g" DepthOfCoverage \
