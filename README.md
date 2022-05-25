@@ -19,7 +19,7 @@ gvcf_dir="/full/path/to/gvcf/directory"
 
 stat_dir="/full/path/to/qc/directory"
 
-## Creating ID list 
+## Creating sample ID list 
 This step is required for both packages prior to submitting jobs.
 
 Create a sample ID file and call it ID_list.tsv in your bam file directory
