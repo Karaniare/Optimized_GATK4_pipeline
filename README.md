@@ -2,7 +2,7 @@
 Part1.sh performes fastq and bam processing and quality check. 
 Part2.sh performes variant calling, filtering and annotation
 The current version of these scripts should be submitted as slurm jobs. 
-You need to ensure that you have access to enough cores and memories on your server based on the number of samples and the size of your genome of interest
+You need to ensure that you have access to enough cores and memories on your server based on the number of samples and the size of your genome of interest before you run the packages
 ## Specifying necessary directories
 This step is required for both packages prior to submitting jobs. Open the package you want to run and edit directories accrodingly
 
