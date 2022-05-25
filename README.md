@@ -8,6 +8,6 @@ ref_dir="/full/path/to/reference/genome/directory"
 fastq_dir="/full/path/to/fastq/directory"
 bam_dir="/full/path/to/bam/file/directory"
 vcf_dir="/full/path/to/vcfs/directory"
-unpaired_dir="/users/path/to/keep/unpaired/fastq/directory"
+unpaired_dir="/users/path/to/keep/unpaired/fastq/directory" \n
 gvcf_dir="/full/path/to/gvcf/directory"
 stat_dir="/full/path/to/qc/directory"
