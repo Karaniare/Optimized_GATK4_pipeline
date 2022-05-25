@@ -27,4 +27,5 @@ Create a sample ID file and call it ID_list.tsv in your bam file directory.
 
 ## Submitting slurm jobs
 sbatch Part1.sh
+
 sbatch Part1.sh
