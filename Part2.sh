@@ -7,16 +7,34 @@
 ##### Loading modules that are necessary for the analysis
 module load bwa/0.7.15 tabix/0.2.6 vcftools/0.1.16 bcftools/1.9 plink/1.90 gatk/4.2.2.0 sratoolkit/2.8.2-1 R/4.1.0 samtools trimmomatic/0.36 
 module load gsl/2.7.1 zlib/1.2.11 RAiSD/2.8
-
+#### Defining arguments
+while getopts i:f:r:b:v:u:g:s: flag
+do
+    case "${flag}" in
+        i) input=${OPTARG};;
+        t) region=${OPTARG};;
+        r) ref_dir=${OPTARG};;
+        b) bam_dir=${OPTARG};;
+        v) vcf_dir=${OPTARG};;
+        g) gvcf_dir=${OPTARG};;
+    esac
+done
+echo "Argument definition:"
+echo "-i: input file (sample ID list) in tab separated format"
+echo "-t: genomic region file"
+echo "-r: reference genome and bed file directory"
+echo "-b: bam file directory"
+echo "-v : vcf file (or output) directory"
+echo "-g: gvcf file directory"
 ###### Specifying analysis directories
 
-fastq_dir="/users/kniare/data/shared/scripts"
-ref_dir="/users/kniare/data/kniare/Pf6k_work/Analysis/Pipeline"
-bam_dir="/users/kniare/data/kniare/Pf6k_work/Tools"
-vcf_dir="/users/kniare/data/shared/vcfs/pf3k_release6"
-unpaired_dir="/users/kniare/data/shared/scripts/Unpaired_ir"
-gvcf_dir=""
-stat_dir=""
+#fastq_dir="/users/kniare/data/shared/scripts"
+#ref_dir="/users/kniare/data/kniare/Pf6k_work/Analysis/Pipeline"
+#bam_dir="/users/kniare/data/kniare/Pf6k_work/Tools"
+#vcf_dir="/users/kniare/data/shared/vcfs/pf3k_release6"
+#unpaired_dir="/users/kniare/data/shared/scripts/Unpaired_ir"
+#gvcf_dir=""
+#stat_dir=""
 
 
 ######## Variant Calling starts here
@@ -24,7 +42,7 @@ stat_dir=""
 cd $gvcf
 mkdir chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14
 cd $bam_dir
-for i in $(cat ID_list)
+for i in $(cat $input)
     do 
       for j in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
        do
@@ -56,7 +74,7 @@ cd $vcf_dir
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
   do
    cd $vcf_dir
-   for j in $(cat Genomic_region_list.tsv)
+   for j in $(cat $region)
      do
      echo -e "#SBATCH -J Genotype_chr"$i"_"$j"" > genotype_chr"$i"_"$j".sh
      echo -e "#SBATCH -t 72:00:00" >> genotype_chr"$i"_"$j".sh
@@ -81,6 +99,7 @@ for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
 done
 ###### This script  does raw vcf soft filtering via  Variant Quality Score Recalibration (VQSR) algorithm with our custom training dataset
     ### VariantRecalibrator for Indels
+    cd $vcf_dir
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
  do 
 gatk --java-options "-Xmx80g -Xms80g" VariantRecalibrator \
