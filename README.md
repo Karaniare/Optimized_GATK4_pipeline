@@ -12,19 +12,18 @@ You need to ensure that you have access to enough cores and memories on your ser
    - -i: input file (sample ID list) in tab separated format
    - -f: fastq file directory
    - -r: reference genome and bed file directory
-- -b: bam file directory
--v : vcf file (or output) directory
--u: directory where unpaired fastq files are kept
--g: gvcf file directory
--s: directory to save qc output files
+   - -b: bam file directory
+   - -v : vcf file (or output) directory
+   - -u: directory where unpaired fastq files are kept
+   - -g: gvcf file directory
+   - -s: directory to save qc output files
 
-* sh Part2.sh 
-## Creating sample ID list 
-This step is required for both packages prior to submitting jobs.
+* sh Part2.sh -i [OPTION] -t [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -g [OPTION]
+* Argument definitions:
+   - -i: input file (sample ID list) in tab separated format
+   - -t: genomic region file
+   - -r: reference genome and bed file directory
+   - -b: bam file directory
+   - -v : vcf file (or output) directory
+   - -g: gvcf file directory
 
-Create a sample ID file and call it ID_list.tsv in your bam file directory.
-
-## Submitting slurm jobs
-sbatch Part1.sh
-
-sbatch Part2.sh
