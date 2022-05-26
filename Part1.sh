@@ -10,17 +10,40 @@ module load gsl/2.7.1 zlib/1.2.11 RAiSD/2.8
 
 ###### Specifying analysis directories
 
-fastq_dir="/users/kniare/data/shared/scripts"
-ref_dir="/users/kniare/data/kniare/Pf6k_work/Analysis/Pipeline"
-bam_dir="/users/kniare/data/kniare/Pf6k_work/Tools"
-vcf_dir="/users/kniare/data/shared/vcfs/pf3k_release6"
-unpaired_dir="/users/kniare/data/shared/scripts/Unpaired_ir"
-gvcf_dir=""
-stat_dir=""
+while getopts i:f:r:b:v:u:g:s: flag
+do
+    case "${flag}" in
+        i) input=${OPTARG};;
+        f) fastq_dir=${OPTARG};;
+        r) ref_dir=${OPTARG};;
+        b) bam_dir=${OPTARG};;
+        v) vcf_dir=${OPTARG};;
+        u) unpaired_dir=${OPTARG};;
+        g) gvcf_dir=${OPTARG};;
+        s) stat_dir=${OPTARG};;
+    esac
+done
+echo "Argument definition:"
+echo "-i: input file (sample ID list) in tab separated format"
+echo "-f: fastq file directory"
+echo "-r: reference genome and bed file directory"
+echo "-b: bam file directory"
+echo "-v : vcf file (or output) directory"
+echo "-u: directory where unpaired fastq files are kept"
+echo "-g: gvcf file directory"
+echo "-s: directory to save qc output files"
+
+##fastq_dir="/users/kniare/data/shared/scripts"
+##ref_dir="/users/kniare/data/kniare/Pf6k_work/Analysis/Pipeline"
+##bam_dir="/users/kniare/data/kniare/Pf6k_work/Tools"
+##vcf_dir="/users/kniare/data/shared/vcfs/pf3k_release6"
+##unpaired_dir="/users/kniare/data/shared/scripts/Unpaired_ir"
+##gvcf_dir=""
+##stat_dir=""
 
 #####
 cd $bam_dir
-for i in $(cat ID_list.tsv)
+for i in $(cat $input)
   do
     cd $fastq_dir
     TrimmomaticPE "$i"_R1_001.fastq.gz "$i"_R2_001.fastq.gz "$i"_R1_paired.fq.gz "$i"_R1_unpaired.fq.gz "$i"_R2_paired.fq.gz "$i"_R2_unpaired.fq.gz  ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MINLEN:3  SLIDINGWINDOW:5:20 -threads 12
@@ -52,7 +75,7 @@ cat *.sample2_summary | awk '!/sample_id/ {print $0}' | sed '1isample_id, total,
 
 ######### Insert size calculation 
 cd $bam_dir
-for i in $(cat ID_list.tsv)
+for i in $(cat $input)
      do
          gatk CollectInsertSizeMetrics -I  "$i".sorted.dup.pf.bam  -O $stat_dir/"$i"_insert.txt -H $stat_dir/"$i"_histo.pdf  -M 0.05
          awk 'FNR>=8 && FNR<=8 {print $1,$3,$4,$5,$6,$7,$8,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$NF="'$i'"}' $stat_dir/"$i"_insert.txt > $stat_dir/"$i"_insert2.txt
@@ -65,7 +88,7 @@ rm *_insert2.txt
 #### Generating some additional bam statistics
 cd $bam_dir
 
-for i in $(cat ID_list.tsv)
+for i in $(cat $input)
   do
     samtools stats "$i".sorted.dup.bam | grep ^SN | cut -f 2- | awk -F"\t" '{print$2}' > $stat_dir/"$i"_bamstat.tsv
       datamash transpose<$stat_dir/"$i"_bamstat.tsv | awk -F '\t' -v OFS='\t' '{ $(NF+1) = "'$i'"; print }' > $stat_dir/"$i"_bamstat_final.tsv
