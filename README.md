@@ -30,4 +30,6 @@ You need to ensure that you have access to enough cores and memories on your ser
    - -b: bam file directory
    - -v : vcf file (or output) directory
    - -g: gvcf file directory
-* For Part2.sh, you need to create a gvcf list for each chromosome in the 
+* For Part2.sh, you need to create a gvcf list for each chromosome in the vcf (output) directory. 
+   - cd vcf_directory
+   - awk -F "\t" -v OFS="\t" '{print $1,"/full/path/to/the/chr1/gvcf/files/"$1}' sample_ID_list.tsv > gvcf_chr1_list.tsv
