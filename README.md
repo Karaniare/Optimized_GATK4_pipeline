@@ -9,10 +9,10 @@ You need to ensure that you have access to enough cores and memories on your ser
 * sh Part1.sh -i [OPTION] -f [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -u [OPTION] -g [OPTION] -s [OPTION]
 * Argument definitions:
 
--i: input file (sample ID list) in tab separated format
--f: fastq file directory
--r: reference genome and bed file directory
--b: bam file directory
+- -i: input file (sample ID list) in tab separated format
+- -f: fastq file directory
+- -r: reference genome and bed file directory
+- -b: bam file directory
 -v : vcf file (or output) directory
 -u: directory where unpaired fastq files are kept
 -g: gvcf file directory
