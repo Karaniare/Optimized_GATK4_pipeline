@@ -6,7 +6,7 @@ You need to ensure that you have access to enough cores and memories on your ser
 
 ## Dependencies
 
-* This pipeline requires on GATK4, bwa, trimmomatic, samtools and datamash and need to be installed. If they are already installed on your server as modules, you do not have to load them as the pipeline does it automatically.
+* The pipeline requires GATK4, bwa, trimmomatic, samtools and datamash and need to be installed. If they are already installed on your server as modules, you do not have to load them as the pipeline does it automatically.
 
 ## Running optimized GATK4 pipeline
 * Download Part1.sh and Part2.sh packages and execute them with arguments as specified below. For Part2.sh, you need to downsload SnpEff folder and keep it in the vcf (output) directory.
