@@ -18,7 +18,7 @@ You need to ensure that you have access to enough cores and memories on your ser
    - -r: reference genome and bed file directory
    - -b: bam file directory
    - -v : vcf file (or output) directory
-   - -u: directory where unpaired fastq files are kept
+   - -u: directory where unpaired fastq files will be kept
    - -g: gvcf file directory
    - -s: directory to save qc output files
 
