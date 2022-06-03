@@ -50,11 +50,12 @@ for i in $(cat $input)
     mv *unpaired* $unpaired_dir
     cd $bam_dir
     bwa mem  -t 10 -M -R "@RG\tID:"$i"\tLB:"$i"\tPL:illumina\tSM:"$i"\tPU:"$i"" $ref_dir/Pf3D7_human.fa $fastq_dir/"$i"_R1_paired.fq.gz $fastq_dir/"$i"_R2_paired.fq.gz > "$i".sam
-    gatk --java-options "-Xmx80g -Xms80g" SamFormatConverter -R $ref/Pf3D7_human.fa -I "$i".sam -O "$i".bam
-    gatk --java-options "-Xmx80g -Xms80g" CleanSam $ref/Pf3D7_human.fa -I "$i".bam -O "$i".clean.bam
-    gatk --java-options "-Xmx80g -Xms80g" SortSam -R $ref_dir/Pf3D7_human.fa -I "$i".clean.bam -O "$i".sorted.bam -SO coordinate --CREATE_INDEX true
-    gatk --java-options "-Xmx80g -Xms80g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fasta -I "$i".sorted.bam -O "$i".sorted.dup.bam
+    gatk --java-options "-Xmx40g -Xms40g" SamFormatConverter -R $ref/Pf3D7_human.fa -I "$i".sam -O "$i".bam
+    gatk --java-options "-Xmx40g -Xms40g" CleanSam $ref/Pf3D7_human.fa -I "$i".bam -O "$i".clean.bam
+    gatk --java-options "-Xmx40g -Xms40g" SortSam -R $ref_dir/Pf3D7_human.fa -I "$i".clean.bam -O "$i".sorted.bam -SO coordinate --CREATE_INDEX true
+    gatk --java-options "-Xmx40g -Xms40g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fasta -I "$i".sorted.bam -O "$i".sorted.dup.bam
     samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/Pf3D7.fasta -L $ref_dir/Pf3D7_core.bed > "$i".sorted.dup.pf.bam
+    samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/genome.fa > "$i".sorted.dup.hs.bam
     rm "$i".sam "$i".bam "$i".clean.bam "$i".sorted.bam
   done 
 ###### Computing the distribution of the read depth using GATK
@@ -85,19 +86,36 @@ cd $stat_dir
 cat *_insert2.txt > $prov/InsertSize_Final.txt
 rm *_insert2.txt
 
-#### Generating some additional bam statistics
+#### Generating some additional bam statistics for P. falciparum only
 cd $bam_dir
 
 for i in $(cat $input)
   do
-    samtools stats "$i".sorted.dup.bam | grep ^SN | cut -f 2- | awk -F"\t" '{print$2}' > $stat_dir/"$i"_bamstat.tsv
+    samtools stats "$i".sorted.dup.pf.bam | grep ^SN | cut -f 2- | awk -F"\t" '{print$2}' > $stat_dir/"$i"_bamstat.tsv
       datamash transpose<$stat_dir/"$i"_bamstat.tsv | awk -F '\t' -v OFS='\t' '{ $(NF+1) = "'$i'"; print }' > $stat_dir/"$i"_bamstat_final.tsv
            rm $stat_dir/"$i"_bamstat.tsv
 done
 cd $stat_dir
-cat *_bamstat_final.tsv > Bam_stats_Final.tsv
+cat *_bamstat_final.tsv | sed '1row_total_reads_pf,	filtered_reads_pf,	sequences_pf,	is_sorted_pf,	1st_fragments_pf,	last_fragments_pf,	reads_mapped_pf,	reads_mapped_and_paired_pf,	reads_unmapped_pf,	reads_properly_paired_pf,	reads_paired_pf,	reads_duplicated_pf,	reads_MQ0_pf,	reads_QC_failed_pf,	non_primary_alignments_pf,	supplementary_alignments_pf,	total_length_pf,	total_first_fragment_length_pf,	total_last_fragment_length_pf,	bases_mapped_pf,	bases_mapped_(cigar)_pf,	bases_trimmed_pf,	bases_duplicated_pf,	mismatches_pf,	error_rate_pf,	average_length_pf,	average_first_fragment_length_pf,	average_last_fragment_length_pf,	maximum_length_pf,	maximum_first_fragment_length_pf,	maximum_last_fragment_length_pf,	average_quality_pf,	insert_size_average_pf,	insert_size_standard_deviation_pf,	inward_oriented pairs_pf,	outward_oriented_pairs_pf,	pairs_with_other_orientation_pf,	pairs_on_different_chromosomes_pf,	percentage_of_properly_paired_reads_(%)_pf,
+' > Bam_stats_pf_Final.tsv
 
 rm *_bamstat_final.tsv
 
+######### Generating some additional bam statistics for human genome only
+cd $bam_dir
+
+for i in $(cat $input)
+  do
+    samtools stats "$i".sorted.dup.hs.bam | grep ^SN | cut -f 2- | awk -F"\t" '{print$2}' > $stat_dir/"$i"_bamstat.tsv
+      datamash transpose<$stat_dir/"$i"_bamstat.tsv | awk -F '\t' -v OFS='\t' '{ $(NF+1) = "'$i'"; print }' > $stat_dir/"$i"_bamstat_final.tsv
+           rm $stat_dir/"$i"_bamstat.tsv
+done
+cd $stat_dir
+cat *_bamstat_final.tsv | sed '1row_total_reads_hs,	filtered_reads_hs,	sequences_hs,	is_sorted_hs,	1st_fragments_hs,	last_fragments_hs,	reads_mapped_hs,	reads_mapped_and_paired_hs,	reads_unmapped_hs,	reads_properly_paired_hs,	reads_paired_hs,	reads_duplicated_hs,	reads_MQ0_hs,	reads_QC_failed_hs,	non_primary_alignments_hs,	supplementary_alignments_hs,	total_length_hs,	total_first_fragment_length_hs,	total_last_fragment_length_hs,	bases_mapped_hs,	bases_mapped_(cigar)_hs,	bases_trimmed_hs,	bases_duplicated_hs,	mismatches_hs,	error_rate_hs,	average_length_hs,	average_first_fragment_length_hs,	average_last_fragment_length_hs,	maximum_length_hs,	maximum_first_fragment_length_hs,	maximum_last_fragment_length_hs,	average_quality_hs,	insert_size_average_hs,	insert_size_standard_deviation_hs,	inward_oriented pairs_hs,	outward_oriented_pairs_hs,	pairs_with_other_orientation_hs,	pairs_on_different_chromosomes_hs,	percentage_of_properly_paired_reads_(%)_hs,
+' > Bam_stats_hs_Final.tsv
 
 
+rm *_bamstat_final.tsv
+
+##### Generating human/parasite read ratios
+pr -m -t -s\ Bam_stats_pf_Final.tsv Bam_stats_hs_Final.tsv | gawk '{print $7,$46}' | awk '!/reads_mapped/ {print $0}' | awk -F "\t" -v OFS="\t" '{print $1, $2, $2/$1}' | sed '1reads_mapped_pf, reads_mapped_hs, ratio_hs_pf' > Ratios_hs_pf_reads.tsv
