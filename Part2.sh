@@ -48,7 +48,7 @@ for i in $(cat $input)
        do
           cd $gvcf_dir
           gatk --java-options "-Xmx80G" HaplotypeCaller -R $ref_dir/Pf3D7.fasta \
-         -I "$bam_dir/$i".sorted.dup.pf.bam -ERC GVCF -ploidy 6 \
+         -I "$bam_dir/$i".sorted.dup.pf.bam -ERC GVCF -ploidy 2 \
          --native-pair-hmm-threads 16 -O  chr"$j"/"$i".chr"$j".g.vcf --assembly-region-padding 100 \
          --max-num-haplotypes-in-population 128 --kmer-size 10 --kmer-size 25 \
          --min-dangling-branch-length 4 --heterozygosity 0.0029 --indel-heterozygosity 0.0017 \ 
