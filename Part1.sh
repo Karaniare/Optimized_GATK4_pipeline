@@ -51,7 +51,7 @@ for i in $(cat $input)
     cd $bam_dir
     bwa mem  -t 10 -M -R "@RG\tID:"$i"\tLB:"$i"\tPL:illumina\tSM:"$i"\tPU:"$i"" $ref_dir/Pf3D7_human.fa $fastq_dir/"$i"_R1_paired.fq.gz $fastq_dir/"$i"_R2_paired.fq.gz > "$i".sam
     gatk --java-options "-Xmx40g -Xms40g" SamFormatConverter -R $ref_dir/Pf3D7_human.fa -I "$i".sam -O "$i".bam
-    gatk --java-options "-Xmx40g -Xms40g" CleanSam $ref_dir/Pf3D7_human.fa -I "$i".bam -O "$i".clean.bam
+    gatk --java-options "-Xmx40g -Xms40g" CleanSam -R $ref_dir/Pf3D7_human.fa -I "$i".bam -O "$i".clean.bam
     gatk --java-options "-Xmx40g -Xms40g" SortSam -R $ref_dir/Pf3D7_human.fa -I "$i".clean.bam -O "$i".sorted.bam -SO coordinate --CREATE_INDEX true
     gatk --java-options "-Xmx40g -Xms40g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fasta -I "$i".sorted.bam -O "$i".sorted.dup.bam
     samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/Pf3D7.fasta -L $ref_dir/Pf3D7_core.bed > "$i".sorted.dup.pf.bam
