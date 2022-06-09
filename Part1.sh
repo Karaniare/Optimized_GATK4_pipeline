@@ -56,18 +56,18 @@ for i in $(cat $input)
     gatk --java-options "-Xmx40g -Xms40g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fasta -I "$i".sorted.bam -O "$i".sorted.dup.bam
     samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/Pf3D7.fasta -L $ref_dir/Pf3D7_core.bed > "$i".sorted.dup.pf.bam
     samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/genome.fa > "$i".sorted.dup.hs.bam
-    rm "$i".sam "$i".bam "$i".clean.bam "$i".sorted.bam
+    rm "$i".sam* "$i".bam* "$i".clean.bam* "$i".sorted.bam*
   done 
 ###### Computing the distribution of the read depth using GATK
 cd $bam_dir
-ls *.sorted.dup.pf.bam > bam.list
+ls *.sorted.dup.pf.bam > bams_pf.list
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
     do
        gatk --java-options "-Xmx80g -Xms80g" DepthOfCoverage \
        -R $ref_dir/Pf3D7.fasta \
        -O $stat_dir/chr"$i" \
        --omit-locus-table true \
-       -I bams.list
+       -I bams_pf.list
        awk -F "\t" -v OFS="\t" '{print $0, $NF="chr'$i'"}' $stat_dir/"$i".sample_summary > $stat_dir/"$i".sample2_summary
        rm $stat_dir/"$i".sample_summary
    done
