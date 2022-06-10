@@ -10,7 +10,7 @@ You need to ensure that you have access to enough cores and memories on your ser
 
 ## Running optimized GATK4 pipeline
 * Download Part1.sh and Part2.sh packages and execute them with arguments as specified below. For Part2.sh, you need to downsload SnpEff folder and keep it in the vcf (output) directory.
-* sh Part1.sh -i [OPTION] -f [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -u [OPTION] -g [OPTION] -s [OPTION]
+* sh Part1.sh -i [OPTION] -f [OPTION] -r [OPTION] -b [OPTION] -u [OPTION] -s [OPTION]
 * Argument definitions:
 
    - -i: input file (sample ID list) in tab separated format
