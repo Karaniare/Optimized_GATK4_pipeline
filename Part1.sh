@@ -10,16 +10,14 @@ module load gsl/2.7.1 zlib/1.2.11 RAiSD/2.8
 
 ###### Specifying analysis directories
 
-while getopts i:f:r:b:v:u:g:s: flag
+while getopts i:f:r:b:u:s: flag
 do
     case "${flag}" in
         i) input=${OPTARG};;
         f) fastq_dir=${OPTARG};;
         r) ref_dir=${OPTARG};;
         b) bam_dir=${OPTARG};;
-        v) vcf_dir=${OPTARG};;
         u) unpaired_dir=${OPTARG};;
-        g) gvcf_dir=${OPTARG};;
         s) stat_dir=${OPTARG};;
     esac
 done
@@ -53,10 +51,11 @@ for i in $(cat $input)
     gatk --java-options "-Xmx40g -Xms40g" SamFormatConverter -R $ref_dir/Pf3D7_human.fa -I "$i".sam -O "$i".bam
     gatk --java-options "-Xmx40g -Xms40g" CleanSam -R $ref_dir/Pf3D7_human.fa -I "$i".bam -O "$i".clean.bam
     gatk --java-options "-Xmx40g -Xms40g" SortSam -R $ref_dir/Pf3D7_human.fa -I "$i".clean.bam -O "$i".sorted.bam -SO coordinate --CREATE_INDEX true
-    gatk --java-options "-Xmx40g -Xms40g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fasta -I "$i".sorted.bam -O "$i".sorted.dup.bam
+    gatk --java-options "-Xmx40g -Xms40g" MarkDuplicatesSpark -R $ref_dir/Pf3D7_human.fa -I "$i".sorted.bam -O "$i".sorted.dup.bam
     samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/Pf3D7.fasta -L $ref_dir/Pf3D7_core.bed > "$i".sorted.dup.pf.bam
-    samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/genome.fa > "$i".sorted.dup.hs.bam
-    rm "$i".sam* "$i".bam* "$i".clean.bam* "$i".sorted.bam*
+    samtools view -b -h "$i".sorted.dup.bam -T $ref_dir/genome.fa -L $ref_dir/human.bed > "$i".sorted.dup.hs.bam
+    samtools index -bc "$i".sorted.dup.pf.bam
+    rm "$i".sam "$i".bam* "$i".clean.bam* "$i".sorted.bam*
   done 
 ###### Computing the distribution of the read depth using GATK
 cd $bam_dir
