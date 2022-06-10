@@ -60,12 +60,12 @@ for i in $(cat $input)
 ###### Computing the distribution of the read depth using GATK
 cd $bam_dir
 ls *.sorted.dup.pf.bam > bams_pf.list
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+for i in 01 02 03 04 05 06 07 08 09 10 11 12 13 14
     do
        gatk --java-options "-Xmx80g -Xms80g" DepthOfCoverage \
        -R $ref_dir/Pf3D7.fasta \
        -O $stat_dir/chr"$i" \
-       -L $ref_dir/Pf3D7_core.list \
+       -L $ref_dir/Pf3D7_"$i"_v3 \
        --omit-locus-table true \
        -I bams_pf.list
        awk -F "\t" -v OFS="\t" '{print $0, $NF="chr'$i'"}' $stat_dir/"$i".sample_summary > $stat_dir/"$i".sample2_summary
