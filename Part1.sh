@@ -65,7 +65,7 @@ for i in 01 02 03 04 05 06 07 08 09 10 11 12 13 14
        gatk --java-options "-Xmx80g -Xms80g" DepthOfCoverage \
        -R $ref_dir/Pf3D7.fasta \
        -O $stat_dir/chr"$i" \
-       -L $ref_dir/Pf3D7_"$i"_v3 \
+       -L Pf3D7_"$i"_v3 \
        --omit-locus-table true \
        -I bams_pf.list
        awk -F "\t" -v OFS="\t" '{print $0, $NF="chr'$i'"}' $stat_dir/"$i".sample_summary > $stat_dir/"$i".sample2_summary
