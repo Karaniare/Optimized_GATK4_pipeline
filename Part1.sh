@@ -68,12 +68,12 @@ for i in 01 02 03 04 05 06 07 08 09 10 11 12 13 14
        -L Pf3D7_"$i"_v3 \
        --omit-locus-table true \
        -I bams_pf.list
-       awk -F "\t" -v OFS="\t" '{print $0, $NF="chr'$i'"}' $stat_dir/"$i".sample_summary > $stat_dir/"$i".sample2_summary
-       rm $stat_dir/"$i".sample_summary
+       awk -F "\t" -v OFS="\t" '{print $0, $NF="chr'$i'"}' $stat_dir/chr"$i".sample_summary > $stat_dir/chr"$i".sample2_summary
+       rm $stat_dir/chr"$i".sample_summary
    done
 cd $stat_dir
 cat *.sample2_summary | awk '!/sample_id/ {print $0}' | sed '1isample_id, total, mean, third_quartile, median, first_quartile, bases_perc_above_15' > ReadCoverage_final.tsv
-rm *.sample2_summary
+
 ######### Insert size calculation 
 cd $bam_dir
 for i in $(cat $input)
