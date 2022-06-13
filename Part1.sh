@@ -118,4 +118,4 @@ cat *_bamstat_final.tsv | sed '1irow_total_reads_hs,	filtered_reads_hs,	sequence
 rm *_bamstat_final.tsv
 
 ##### Generating human/parasite read ratios
-pr -m -t -s\ Bam_stats_pf_Final.tsv Bam_stats_hs_Final.tsv | gawk '{print $7,$46}' | awk '!/reads_mapped/ {print $0}' | awk -F "\t" -v OFS="\t" '{print $1, $2, $2/$1}' | sed '1ireads_mapped_pf, reads_mapped_hs, ratio_hs_pf' > Ratios_hs_pf_reads.tsv
+pr -m -t -s\  Bam_stats_pf_Final.tsv Bam_stats_hs_Final.tsv | gawk '{print $7,$46}' | awk '!/reads_mapped/ {print $0}' | awk -v OFS="\t" '{print $1, $2, $2/$1}' | sed '1ireads_mapped_pf, reads_mapped_hs, ratio_hs_pf' > Ratios_hs_pf_reads.tsv
