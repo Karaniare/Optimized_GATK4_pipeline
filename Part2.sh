@@ -28,18 +28,11 @@ echo "-v : vcf file (or output) directory"
 echo "-g: gvcf file directory"
 ###### Specifying analysis directories
 
-#fastq_dir="/users/kniare/data/shared/scripts"
-#ref_dir="/users/kniare/data/kniare/Pf6k_work/Analysis/Pipeline"
-#bam_dir="/users/kniare/data/kniare/Pf6k_work/Tools"
-#vcf_dir="/users/kniare/data/shared/vcfs/pf3k_release6"
-#unpaired_dir="/users/kniare/data/shared/scripts/Unpaired_ir"
-#gvcf_dir=""
-#stat_dir=""
 
 
 ######## Variant Calling starts here
 ####### Running HaplotypeCaller to generate gVCFs
-cd $gvcf
+cd $gvcf_dir
 mkdir chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14
 cd $bam_dir
 for i in $(cat $input)
