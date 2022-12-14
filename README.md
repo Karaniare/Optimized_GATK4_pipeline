@@ -10,17 +10,12 @@ You need to ensure that you have access to enough cores and memories on your ser
 
 ## Running optimized GATK4 pipeline
 * Download Part1.sh and Part2.sh packages and execute them with arguments as specified below. For Part2.sh, you need to downsload SnpEff folder and keep it in the vcf (output) directory.
-* sh Part1.sh -i [OPTION] -f [OPTION] -r [OPTION] -b [OPTION] -u [OPTION] -s [OPTION]
-* Argument definitions:
-
-   - -i: input file (sample ID list) in tab separated format
-   - -f: fastq file directory
-   - -r: reference genome and bed file directory
-   - -b: bam file directory
-   - -v : vcf file (or output) directory
-   - -u: directory where unpaired fastq files will be kept
-   - -g: gvcf file directory
-   - -s: directory to save qc output files
+*sh Part1.sh [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>]" 2>&1
+   - -i : list of sample IDs in a text file
+   - -f: full path to the fastq file
+   - -u: directory to keep unpaired fastqs after trimming
+   - -s: directory to keep QC stats
+   - -k: name of the library prep kit (Examples: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa)
 
 * sh Part2.sh -i [OPTION] -t [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -g [OPTION]
 * Argument definitions:
