@@ -15,11 +15,11 @@ A singularity container containing all these packages is also available.
 **QC_Pf_WGS.sh**
 * sh QC_Pf_WGS.sh [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>].
  
-- -i : list of sample IDs in a text file.
-- -f: full path to the fastq files.
-- -u: directory to keep unpaired fastqs after trimming.
-- -s: directory to keep QC stats.
-- -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
+-  -i : list of sample IDs in a text file.
+-  -f: full path to the fastq files.
+-  -u: directory to keep unpaired fastqs after trimming.
+-  -s: directory to keep QC stats.
+-  -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
 
 Making_gVCFs.sh
 * sh Making_gVCFs.sh [-i <input>] [-c <chromosome number>] [-b <bam directory>] [-g <gVCF directory>].
