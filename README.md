@@ -40,7 +40,7 @@ A singularity container containing all these packages is also available (highly 
    - -t: file containing a list of genomic regions to call variants at, one region per line (ex.: 1-20,000  20,001-40,000 40,001-60,000 60,001-80,000).
  
  
- **Gather_and_Filter_VCFs**.sh (joints small VCFs and recalibrates variants)
+ **Gather_and_Filter_VCFs**.sh (joins small VCFs and recalibrates variants)
  * sh Gather_and_Filter_VCFs.sh [-ms <Gaussian model for snp>] [-mi <Gaussian model for indel>] [-v <VCF directory>].
     - -ms: Gaussian model for snp (ex.: 4).
     - -v : vcf file directory (a.k.a variant call output).
