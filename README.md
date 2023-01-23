@@ -13,7 +13,7 @@ A singularity container containing all these packages is also available.
 * If want to use the non-container version, download each package packages and execute them with arguments as specified below. 
 
 **QC_Pf_WGS.sh**
-* sh QC_Pf_WGS.sh -i [<input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>]".
+* sh QC_Pf_WGS.sh [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>].
  
 - -i : list of sample IDs in a text file.
 - -f: full path to the fastq files.
