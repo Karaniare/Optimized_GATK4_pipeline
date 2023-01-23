@@ -49,5 +49,5 @@ A singularity container containing all these packages is also available (highly 
  
 **Annotating_VCFs.sh** (performs functional annotation of VCFs)
  * sh  Annotating_VCFs.sh [-i <input>] [-v <VCF directory>].
-    - -i: list of VCFs file name to annotate (only names without .vcf.gz) in tab separated value format.
-    - -v : VCF file directory (directory of variant call outputs).
+   - -i: list of VCFs file name to annotate (only names without .vcf.gz) in tab separated value format.
+   - -v : VCF file directory (directory of variant call outputs).
