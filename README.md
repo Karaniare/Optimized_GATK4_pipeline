@@ -21,7 +21,7 @@ A singularity container containing all these packages is also available.
   -  -s: directory to keep QC stats.
   -  -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
 
-Making_gVCFs.sh
+**Making_gVCFs.sh**
 * sh Making_gVCFs.sh [-i <input>] [-c <chromosome number>] [-b <bam directory>] [-g <gVCF directory>].
   - -i: input file (sample ID list) in tab separated value format.
   - -c: chromosome number (ex.: 1).
