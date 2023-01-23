@@ -41,7 +41,7 @@ ref_dir="/opt/data"
 #
 ######### Variant Calling starts here
 ######## Running HaplotypeCaller to generate gVCFs
-cd $gvcf
+cd $gvcf_dir
 mkdir chr"$chrom"
 cd $bam_dir
 for i in $(cat $input)
@@ -49,13 +49,10 @@ for i in $(cat $input)
       for j in $chrom
        do
           cd $gvcf_dir
-          gatk --java-options "-Xmx80G" HaplotypeCaller -R $ref_dir/Pf3D7.fasta \
-         -I "$bam_dir/$i".sorted.dup.pf.bam -ERC GVCF -ploidy 2 \
+          gatk --java-options "-Xmx80G" HaplotypeCaller -R $ref_dir/Pf3D7.fasta -I "$bam_dir/$i".sorted.dup.pf.bam -ERC GVCF -ploidy 2 \
          --native-pair-hmm-threads 16 -O  chr"$j"/"$i".chr"$j".g.vcf --assembly-region-padding 100 \
          --max-num-haplotypes-in-population 128 --kmer-size 10 --kmer-size 25 \
-         --min-dangling-branch-length 4 --heterozygosity 0.0029 --indel-heterozygosity 0.0017 \ 
-         --min-assembly-region-size 100 -L $ref_dir/core_chr"$j".list \
-         -mbq 5 -DF MappingQualityReadFilter  --base-quality-score-threshold 12
+         --min-dangling-branch-length 4 --heterozygosity 0.0029 --indel-heterozygosity 0.0017 --min-assembly-region-size 100 -L $ref_dir/core_chr"$j".list -mbq 5 -DF MappingQualityReadFilter --base-quality-score-threshold 12
        done
 done
 
