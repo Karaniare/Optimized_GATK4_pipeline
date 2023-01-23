@@ -12,13 +12,14 @@ A singularity container containing all these packages is also available.
 ## Running optimized GATK4 pipeline
 * If want to use the non-container version, download each package packages and execute them with arguments as specified below. 
 * 
-* sh QC_Pf_WGS.sh -i [input list] -f [fastq directory] -b [bam directory] -u [unpaired directory] -s [stat directory] -k [kit name]
-   - -i : list of sample IDs in a text file
-   - -f: full path to the fastq file
-   - -u: directory to keep unpaired fastqs after trimming
-   - -s: directory to keep QC stats
-   - -k: name of the library prep kit (Examples: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa)
+* usage() { echo -e "Usage: $0 [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>]" 2>&1
+ echo -e "-i : list of sample IDs in a text file "
+ echo -e "-f: full path to the fastq files"
+ echo -e "-u: directory to keep unpaired fastqs after trimming "
+ echo -e "-s: directory to keep QC stats"
+ echo -e "-k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa)"
 
+}
 * sh Part2.sh -i [OPTION] -t [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -g [OPTION]
 * Argument definitions:
    - -i: input file (sample ID list) in tab separated format
