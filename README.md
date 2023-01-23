@@ -41,7 +41,7 @@ A singularity container containing all these packages is also available (highly 
  
  
  **Gather_and_Filter_VCFs**.sh (joints small VCFs and recalibrates variants)
- sh Gather_and_Filter_VCFs.sh [-ms <Gaussian model for snp>] [-mi <Gaussian model for indel>] [-v <VCF directory>].
+ *sh Gather_and_Filter_VCFs.sh [-ms <Gaussian model for snp>] [-mi <Gaussian model for indel>] [-v <VCF directory>].
     - -ms: Gaussian model for snp (ex.: 4).
     - -v : vcf file directory (a.k.a variant call output).
     - -mi: Gaussian model for indel (ex.: 4).
@@ -49,5 +49,5 @@ A singularity container containing all these packages is also available (highly 
  
 **Annotating_VCFs.sh** (performs functional annotation of VCFs)
  *sh  Annotating_VCFs.sh [-i <input>] [-v <VCF directory>].
-   - -i: list of VCFs file name to annotate (only names without .vcf.gz) in tab separated value format.
-   - -v : VCF file directory (directory of variant call outputs).
+    - -i: list of VCFs file name to annotate (only names without .vcf.gz) in tab separated value format.
+    - -v : VCF file directory (directory of variant call outputs).
