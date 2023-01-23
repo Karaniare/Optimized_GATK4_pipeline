@@ -21,14 +21,10 @@ A singularity container containing all these packages is also available.
 - -s: directory to keep QC stats.
 - -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
 
-* sh Part2.sh -i [OPTION] -t [OPTION] -r [OPTION] -b [OPTION] -v [OPTION] -g [OPTION]
-* Argument definitions:
-   - -i: input file (sample ID list) in tab separated format
-   - -t: genomic region file
-   - -r: reference genome and bed file directory
-   - -b: bam file directory
-   - -v : vcf file (or output) directory
-   - -g: gvcf file directory
-* For Part2.sh, you need to create a gvcf list for each chromosome in the vcf (output) directory. 
-   - cd vcf_directory
-   - awk -F "\t" -v OFS="\t" '{print $1,"/full/path/to/the/chr1/gvcf/files/"$1}' sample_ID_list.tsv > gvcf_chr1_list.tsv
+Making_gVCFs.sh
+* sh Making_gVCFs.sh [-i <input>] [-c <chromosome number>] [-b <bam directory>] [-g <gVCF directory>].
+- -i: input file (sample ID list) in tab separated value format.
+- -c: chromosome number (ex.: 1).
+- -b: bam file directory.
+- -g: directory to save gVCF files.
+
