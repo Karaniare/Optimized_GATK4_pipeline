@@ -1,7 +1,7 @@
 # Optimized_GATK4_pipeline
 **QC_Pf_WGS.sh** performes fastq and bam processing and quality check. 
-The scripts **Making_gVCFs.sh**, **Making_VCFs.sh**, **Gather_and_Filter_VCFs.sh** and **Annotating_VCFs.sh** perform variant calling in the core genome of _Plasmodium falciparum_ and filter and annotate the VCFs
-Each script of the current version of the pipeline should be submitted as slurm jobs. 
+The scripts **Making_gVCFs.sh**, **Making_VCFs.sh**, **Gather_and_Filter_VCFs.sh** and **Annotating_VCFs.sh** perform variant calling in the core genome of _Plasmodium falciparum_ and filter and annotate the VCFs.
+Each script of the current version of the pipeline should be submitted indepently as slurm jobs. 
 It is important to ensure that enough cores and memories are accessible on the server based on the number of samples and the size of the genome of interest before you run the packages. Clone the files and follow directions below.
 A singularity container containing all these packages is also available (highly recommended).
 
