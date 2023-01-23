@@ -7,7 +7,7 @@ A singularity container containing all these packages is also available (highly 
 
 ## Dependencies
 
-* The pipeline requires GATK4, bwa, trimmomatic, samtools and datamash. If they are already installed on your server as modules, you do not have to load them as the pipeline does it automatically. Some additional resources are needed including Pf3D7 reference genome and index files, homo sapiens reference genome and index files, concatenaed Pf3D7 and human (hibrid) reference genome and index files, Training dataset (VCF), bed files specifying core regions of chromosomes in gatk format (.list), bed files specifying Pf3D7 and human genome chromosome locationsin samtools format (tab-separated format) and snpeff database with the Pf3D7_v3 assembly. All the tools and resources are available in the the singularity container.
+* The pipeline requires GATK4, bwa, trimmomatic, samtools and datamash. If they are already installed on your server as modules, you do not have to load them as the pipeline does it automatically. Some additional resources are needed including Pf3D7 reference genome and index files, homo sapiens reference genome and index files, concatenaed Pf3D7 and human (hibrid) reference genome and index files, Training dataset (VCF), bed files specifying core regions of chromosomes in gatk format (.list), bed files specifying Pf3D7 and human genome chromosome locationsin samtools format (tab-separated value format) and snpeff database with the Pf3D7_v3 assembly. All the tools and resources are available in the the singularity container.
 
 ## Running optimized GATK4 pipeline
 * Please use the packages with arguments as specified below. 
