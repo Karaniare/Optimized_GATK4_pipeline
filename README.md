@@ -38,7 +38,7 @@ A singularity container containing all these packages is also available (highly 
    - -v: directory to save VCF files.
    - -g: gVCF file directory.
    - -t: file containing a list of genomic regions to call variants at, one region per line (ex.: 1-20,000  20,001-40,000 40,001-60,000 60,001-80,000).
- 
+ **NB:** A file specifying the gVCF IDs (first column) and the full paths to them (second column) should be created by the user. They should be named as follows: gvcf_chr1_list.tsv gvcf_chr2_list.tsv gvcf_chr3_list.tsv gvcf_chr4_list.tsv gvcf_chr5_list.tsv gvcf_chr6_list.tsv gvcf_chr7_list.tsv gvcf_chr8_list.tsv gvcf_chr9_list.tsv gvcf_chr10_list.tsv gvcf_chr11_list.tsv gvcf_chr12_list.tsv gvcf_chr13_list.tsv and gvcf_chr14_list.tsv
  
  **Gather_and_Filter_VCFs**.sh (joins small VCFs and recalibrates variants)
  * sh Gather_and_Filter_VCFs.sh [-ms <Gaussian model for snp>] [-mi <Gaussian model for indel>] [-v <VCF directory>].
