@@ -31,10 +31,9 @@ A singularity container containing all these packages is also available (highly 
 
 
 **Making_VCFs.sh** (generates VCFs from gVCFs)
-* sh Making_VCFs.sh [-v <VCF directory>] [-g <gVCF directory>] [-c <chromosome number>] [-t <region>].
+* sh Making_VCFs.sh [-v <VCF directory>] [-c <chromosome number>] [-t <region>].
    - -c: chromosome number (ex.: 1).
    - -v: directory to save VCF files.
-   - -g: gVCF file directory.
    - -t: file containing a list of genomic regions to call variants at, one region per line (ex.: 1-20,000  20,001-40,000 40,001-60,000 60,001-80,000).
  
  * **NB:** files specifying the gVCF IDs (first column) and the full paths to them (second column) should be created in the VCF directory by the user. They should be named as follows: gvcf_chr1_list.tsv gvcf_chr2_list.tsv gvcf_chr3_list.tsv gvcf_chr4_list.tsv gvcf_chr5_list.tsv gvcf_chr6_list.tsv gvcf_chr7_list.tsv gvcf_chr8_list.tsv gvcf_chr9_list.tsv gvcf_chr10_list.tsv gvcf_chr11_list.tsv gvcf_chr12_list.tsv gvcf_chr13_list.tsv and gvcf_chr14_list.tsv
