@@ -41,7 +41,7 @@ A singularity container containing all these packages is also available (highly 
  **Gather_and_Filter_VCFs**.sh (joins small VCFs and recalibrates variants)
  * sh Gather_and_Filter_VCFs.sh [-ms <Gaussian model for snp>] [-mi <Gaussian model for indel>] [-v <VCF directory>].
     - -ms: Gaussian model for snp (ex.: 4).
-    - -v : vcf file directory (a.k.a variant call output).
+    - -v : vcf file directory (a.k.a variant calling output).
     - -mi: Gaussian model for indel (ex.: 4).
  
  
