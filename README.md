@@ -19,6 +19,7 @@ A singularity container containing all these packages is also available (highly 
   -  -f: full path to the fastq files.
   -  -u: directory to keep unpaired fastqs after trimming.
   -  -s: directory to keep QC stats.
+  -  -b: bam file directory
   -  -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
 
  
