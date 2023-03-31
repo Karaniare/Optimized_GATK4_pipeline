@@ -13,7 +13,7 @@ A singularity container containing all these packages is also available (highly 
 * Please use the packages with arguments as specified below. 
 
 **QC_Pf_WGS.sh** (does quality control)
-* sh QC_Pf_WGS.sh [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>].
+* sh QC_Pf_WGS.sh [-i <input list>] [-f <fastq directory>] [-b <bam directory>] [-u <unpaired directory>] [-s <stat directory>] [-k <kit name>] [-r <run name>].
  
   -  -i : list of sample IDs in a text file.
   -  -f: full path to the fastq files.
@@ -21,6 +21,7 @@ A singularity container containing all these packages is also available (highly 
   -  -s: directory to keep QC stats.
   -  -b: bam file directory
   -  -k: name of the library prep kit (Ex.: TruSeq3-PE.fa, /opt/data/Nextera-PE.fa).
+  -  -r: run name (Ex: run1), useful if you run the pipeline on separate samplesets simultaneously
 
  
 **Making_gVCFs.sh** (generates gVCFs based on HaplotypeCaller).
