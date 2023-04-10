@@ -37,8 +37,9 @@ echo "-b: bam file directory"
 echo "-v : vcf file (or output) directory"
 echo "-g: gvcf file directory"
 region="/opt/data"
-ref_dir="/opt/data"
-#
+#ref_dir="/opt/data"
+ref_dir="/users/kniare/data/shared/scripts/Data_WGS_UNC"
+
 ######### Variant Calling starts here
 ######## Running HaplotypeCaller to generate gVCFs
 cd $gvcf_dir
@@ -55,5 +56,4 @@ for i in $(cat $input)
          --min-dangling-branch-length 4 --heterozygosity 0.0029 --indel-heterozygosity 0.0017 --min-assembly-region-size 100 -L $ref_dir/core_chr"$j".list -mbq 5 -DF MappingQualityReadFilter --base-quality-score-threshold 12
        done
 done
-
 
