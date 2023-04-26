@@ -32,7 +32,7 @@ done
 cd $vcf_dir
 for i in $(cat $input)
  do
- cd /opt/resources/snpEff/data
+ cd /opt/resources/snpEff
 
   java -Xmx80g -jar snpEff.jar Pfalciparum.noseq $vcf_dir/"$i".vcf.gz -no-upstream -no-downstream | bgzip -c > $vcf_dir/"$i".annotated.vcf.gz
   tabix -p vcf $vcf_dir/"$i".annotated.vcf.gz
