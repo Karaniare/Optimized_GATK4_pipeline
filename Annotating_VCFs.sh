@@ -29,7 +29,7 @@ done
 
 
 ##### Starts annotating VCF
-
+cd $vcf_dir
 for i in $(cat $input)
  do
  cd /opt/resources/snpEff/data
