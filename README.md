@@ -3,7 +3,7 @@
 The scripts **Making_gVCFs.sh**, **Making_VCFs.sh**, **Gather_and_Filter_VCFs.sh** and **Annotating_VCFs.sh** perform variant calling in the core genome of _Plasmodium falciparum_ and filter and annotate the VCFs.
 Each script of the current version of the pipeline should be submitted indepently as slurm jobs. 
 It is important to ensure that enough cores and memories are accessible on the server based on the number of samples and the size of the genome of interest before you run the packages. Clone the files and follow directions below.
-A singularity container containing all these packages is also available (highly recommended). Just run wget https://baileylab.brown.edu/opti_gatk4/opti_gatk4_230911.sif to download the container. A manual on how to run the analysis in the container is available Manual_Opti-GATK4_for_falciparum_WGS_variant_calling_and_analysis_public_copy.docx
+A singularity container containing all these packages is also available (highly recommended). Just run wget https://baileylab.brown.edu/opti_gatk4/opti_gatk4_230911.sif to download the container. A manual on how to run the analysis in the container is available in this link https://github.com/Karaniare/Optimized_GATK4_pipeline/blob/main/Manual_Opti-GATK4_for_falciparum_WGS_variant_calling_and_analysis_public_copy.docx 
 
 ## Dependencies
 
